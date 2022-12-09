@@ -38,17 +38,25 @@ py::array_t<float_t> compute_energy(const py::array_t<float_t> &audio,
   auto srcAudio =
       audio.unchecked<2>();  // x must have ndim = 2; can be non-writeable
 
-  // init new array for destination
-  py::array_t<float_t> result({srcAudio.shape(0), srcAudio.shape(1)});
-  auto destAudio = result.mutable_unchecked<2>();
-
   ssize_t windowLength = static_cast<ssize_t>(win_len);
   ssize_t hopLength = static_cast<ssize_t>(hop_len);
+
+  // init new array for destination
+  ssize_t arrayLength = ceil(static_cast<float>(srcAudio.shape(1) - hopLength) /
+                             static_cast<float>(hopLength)) +
+                        1;
+  std::cout << arrayLength << std::endl;
+  py::array_t<float_t> result({srcAudio.shape(0), arrayLength});
+  auto destAudio = result.mutable_unchecked<2>();
+
   ssize_t z = 0;
   meanOfSlice meanOfSlice;
   for (py::ssize_t j = 0; j < srcAudio.shape(1) - windowLength + 1;
        j += hopLength) {
     meanOfSlice = computeSliceMean(audio, j, j + windowLength);
+
+    // destAudio should have size np.ceil((23420-8)/8) + 1
+
     destAudio(0, z) = meanOfSlice.channelOne;
     destAudio(1, z) = meanOfSlice.channelTwo;
     z += 1;

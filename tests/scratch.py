@@ -17,9 +17,13 @@ def compute_energy_cpp(audio: nptyping.NDArray, hop_len: int, win_len: int):
 
 def main():
 
-    audio = np.array([[0, 1, 2, 3, 4], [5, 6, 7, 8, 9]], dtype=np.float32)
-    win_len = 2
-    hop_len = 3
+    audio = np.array(
+        [
+            [1, 2, 3, 4, 5, 6, 7, 8, 9],
+            [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        ], dtype=np.float32)
+    win_len = 5
+    hop_len = 2
     print("python: {}".format(compute_energy(audio, hop_len, win_len)))
     print("cpp: {}".format(compute_energy_cpp(audio, hop_len, win_len)))
 
