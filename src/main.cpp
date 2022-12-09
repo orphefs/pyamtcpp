@@ -10,10 +10,48 @@
 
 namespace py = pybind11;
 
-py::array_t<uint16_t> compute_energy(const py::array_t<float_t> &image,
-                                     const int hop_len, const int win_len) {
-  std::cout << "Hello World!" << std::endl;
-  return image;
+struct meanOfSlice {
+  float_t channelOne;
+  float_t channelTwo;
+};
+
+meanOfSlice computeSliceMean(const py::array_t<float_t> &srcAudio,
+                             const py::ssize_t start, const py::ssize_t stop) {
+  auto data = srcAudio.unchecked<2>();
+
+  float_t channelOne = 0.0;
+  float_t channelTwo = 0.0;
+
+  for (py::ssize_t i = start; i < stop; i++) {
+    channelOne = channelOne + data(0, i);
+    channelTwo = channelTwo + data(1, i);
+  }
+
+  std::cout << channelOne / (stop - start) << std::endl;
+  std::cout << channelTwo / (stop - start) << std::endl;
+
+  return meanOfSlice{channelOne, channelTwo};
+}
+
+py::array_t<float_t> compute_energy(const py::array_t<float_t> &audio,
+                                    const int hop_len, const int win_len) {
+  auto srcAudio =
+      audio.unchecked<2>();  // x must have ndim = 2; can be non-writeable
+
+  // init new array for destination
+  py::array_t<float_t> result({srcAudio.shape(0), srcAudio.shape(1)});
+  auto destAudio = result.mutable_unchecked<2>();
+
+  meanOfSlice something;
+  for (py::ssize_t j = 0; j < srcAudio.shape(1) - 2; j++) {
+    something = computeSliceMean(audio, j, j + 2);
+  }
+
+  // One liner for testing in python:
+  // python3 -c 'import pyoniip; import numpy as np; arr =
+  // np.array([[0,1],[2,3]], dtype=np.float32); b =
+  // pyoniip.compute_energy(arr,1, 2); print(b)'
+  return audio;
 }
 
 PYBIND11_MODULE(pyoniip, m) {
