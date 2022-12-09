@@ -42,23 +42,19 @@ py::array_t<float_t> compute_energy(const py::array_t<float_t> &audio,
   py::array_t<float_t> result({srcAudio.shape(0), srcAudio.shape(1)});
   auto destAudio = result.mutable_unchecked<2>();
 
-  ssize_t windowLength = 2;
-  ssize_t hopLength = 2;
-
+  ssize_t windowLength = static_cast<ssize_t>(win_len);
+  ssize_t hopLength = static_cast<ssize_t>(hop_len);
+  ssize_t z = 0;
   meanOfSlice meanOfSlice;
   for (py::ssize_t j = 0; j < srcAudio.shape(1) - windowLength + 1;
        j += hopLength) {
     meanOfSlice = computeSliceMean(audio, j, j + windowLength);
+    destAudio(0, z) = meanOfSlice.channelOne;
+    destAudio(1, z) = meanOfSlice.channelTwo;
+    z += 1;
   }
 
-  std::cout << meanOfSlice.channelOne << std::endl;
-  std::cout << meanOfSlice.channelTwo << std::endl;
-
-  // One liner for testing in python:
-  // python3 -c 'import pyoniip; import numpy as np; arr =
-  // np.array([[0,1],[2,3]], dtype=np.float32); b =
-  // pyoniip.compute_energy(arr,1, 2); print(b)'
-  return audio;
+  return result;
 }
 
 PYBIND11_MODULE(pyoniip, m) {
