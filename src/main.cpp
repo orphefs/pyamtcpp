@@ -51,8 +51,10 @@ py::array_t<float_t> compute_energy(const py::array_t<float_t> &audio,
 
   ssize_t z = 0;
   meanOfSlice meanOfSlice;
-  for (py::ssize_t j = 0; j < srcAudio.shape(1) - windowLength + 1;
-       j += hopLength) {
+
+  // TODO: fix loop bounds, as right array edge has funky numbers
+
+  for (py::ssize_t j = 0; j < arrayLength; j += hopLength) {
     meanOfSlice = computeSliceMean(audio, j, j + windowLength);
 
     // destAudio should have size np.ceil((23420-8)/8) + 1
