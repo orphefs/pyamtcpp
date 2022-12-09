@@ -27,8 +27,8 @@ meanOfSlice computeSliceMean(const py::array_t<float_t> &srcAudio,
     channelTwo = channelTwo + data(1, i);
   }
 
-  std::cout << channelOne / (stop - start) << std::endl;
-  std::cout << channelTwo / (stop - start) << std::endl;
+  channelOne = channelOne / (stop - start);
+  channelTwo = channelTwo / (stop - start);
 
   return meanOfSlice{channelOne, channelTwo};
 }
@@ -42,10 +42,17 @@ py::array_t<float_t> compute_energy(const py::array_t<float_t> &audio,
   py::array_t<float_t> result({srcAudio.shape(0), srcAudio.shape(1)});
   auto destAudio = result.mutable_unchecked<2>();
 
-  meanOfSlice something;
-  for (py::ssize_t j = 0; j < srcAudio.shape(1) - 2; j++) {
-    something = computeSliceMean(audio, j, j + 2);
+  ssize_t windowLength = 2;
+  ssize_t hopLength = 2;
+
+  meanOfSlice meanOfSlice;
+  for (py::ssize_t j = 0; j < srcAudio.shape(1) - windowLength + 1;
+       j += hopLength) {
+    meanOfSlice = computeSliceMean(audio, j, j + windowLength);
   }
+
+  std::cout << meanOfSlice.channelOne << std::endl;
+  std::cout << meanOfSlice.channelTwo << std::endl;
 
   // One liner for testing in python:
   // python3 -c 'import pyoniip; import numpy as np; arr =
