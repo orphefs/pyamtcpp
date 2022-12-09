@@ -67,11 +67,11 @@ py::array_t<float_t> compute_energy(const py::array_t<float_t> &audio,
   return result;
 }
 
-PYBIND11_MODULE(pyoniip, m) {
+PYBIND11_MODULE(pyamtcpp, m) {
   m.doc() = R"pbdoc(
-        pyoniip
+        pyamtcpp
         -----------------------
-        .. currentmodule:: pyoniip
+        .. currentmodule:: pyamtcpp
         .. autosummary::
            :toctree: _generate
            compute_energy

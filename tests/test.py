@@ -1,4 +1,4 @@
-import pyoniip as m
+import pyamtcpp as m
 import numpy as np
 
 calibration_image_dtype = np.float32

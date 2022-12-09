@@ -51,7 +51,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'pyoniip'
+project = 'pyamtcpp'
 copyright = '2022, Orfeas Kypris'
 author = 'Orfeas Kypris'
 
@@ -205,7 +205,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'pyoniipdoc'
+htmlhelp_basename = 'pyamtcppdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -227,7 +227,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'pyoniip.tex', 'pyoniip Documentation',
+    (master_doc, 'pyamtcpp.tex', 'pyamtcpp Documentation',
      'Orfeas Kypris', 'manual'),
 ]
 
@@ -257,7 +257,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'pyoniip', 'pyoniip Documentation',
+    (master_doc, 'pyamtcpp', 'pyamtcpp Documentation',
      [author], 1)
 ]
 
@@ -271,8 +271,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'pyoniip', 'pyoniip Documentation',
-     author, 'pyoniip', 'Image processing library.',
+    (master_doc, 'pyamtcpp', 'pyamtcpp Documentation',
+     author, 'pyamtcpp', 'Image processing library.',
      ' '),
 ]
 

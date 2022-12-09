@@ -1,1 +1,1 @@
-.. automodule:: pyoniip
+.. automodule:: pyamtcpp

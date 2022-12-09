@@ -1,4 +1,4 @@
-import pyoniip
+import pyamtcpp
 import numpy as np
 import nptyping
 import time
@@ -29,7 +29,7 @@ def compute_energy(audio: nptyping.NDArray, hop_len: int, win_len: int):
 
 @st_time
 def compute_energy_cpp(audio: nptyping.NDArray, hop_len: int, win_len: int):
-    energy = pyoniip.compute_energy(audio, hop_len, win_len)
+    energy = pyamtcpp.compute_energy(audio, hop_len, win_len)
     return energy
 
 

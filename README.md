@@ -1,13 +1,12 @@
-pyoniip
+pyamtcpp
 ==============
 
 |      CI              | status |
 |----------------------|--------|
 | pip builds           | [![Pip Actions Status][actions-pip-badge]][actions-pip-link] |
 
-[actions-badge]:           https://github.com/orphefs/pyoniip/workflows/Tests/badge.svg
-[actions-pip-link]:        https://github.com/orphefs/pyoniip/actions?query=workflow%3A%22Pip
-[actions-pip-badge]:       https://github.com/orphefs/pyoniip/workflows/Pip/badge.svg
+[actions-pip-link]:        https://github.com/orphefs/pyamtcpp/actions?query=workflow%3A%22Pip
+[actions-pip-badge]:       https://github.com/orphefs/pyamtcpp/workflows/Pip/badge.svg
 
 A [pybind11](https://github.com/pybind/pybind11) module built with a
 CMake-based build system, based on [this](https://github.com/pybind/cmake_example) template. This module is used in [this](https://github.com/orphefs/oni-image-processing-runner) repo for pixel-wise imputation of a microscope image.
@@ -19,8 +18,8 @@ Just clone this repository and pip install. Note the `--recursive` option which 
 needed for the pybind11 submodule:
 
 ```bash
-git clone --recursive https://github.com/orphefs/pyoniip.git
-pip install ./pyoniip
+git clone --recursive https://github.com/orphefs/pyamtcpp.git
+pip install ./pyamtcpp
 ```
 
 With the `setup.py` file included in this example, the `pip install` command will
@@ -43,13 +42,13 @@ the extension module to generate beautiful documentation in a variety formats.
 The following command generates HTML-based reference documentation; for other
 formats please refer to the Sphinx manual:
 
-- `cd pyoniip/docs`
+- `cd pyamtcpp/docs`
 - `make html`
 
 License
 -------
 
-pyoniip is provided under a BSD-style license that can be found in the LICENSE
+pyamtcpp is provided under a BSD-style license that can be found in the LICENSE
 file. By using, distributing, or contributing to this project, you agree to the
 terms and conditions of this license.
 
@@ -76,7 +75,7 @@ You can import and use the module like so:
 
 ```python
 import pyoniiip
-imputed_image = pyoniip.impute_image(image, calibration_image)
+imputed_image = pyamtcpp.impute_image(image, calibration_image)
 ```
 
 where

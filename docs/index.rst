@@ -1,4 +1,4 @@
-pyoniip Documentation
+pyamtcpp Documentation
 ============================
 
 Contents:
@@ -6,4 +6,4 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   pyoniip
+   pyamtcpp
