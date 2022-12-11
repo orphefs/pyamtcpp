@@ -40,8 +40,8 @@ def main():
             [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
             [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
         ], dtype=np.float32)
-    win_len = 4
-    hop_len = 2
+    win_len = 6
+    hop_len = 3
 
     # audio = np.ones([2, 6648320], dtype=np.float32)
     # win_len = 108
