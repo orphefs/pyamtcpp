@@ -74,7 +74,7 @@ python tests/test.py
 You can import and use the module like so:
 
 ```python
-import pyoniiip
+import pyamtcpp
 energy = pyamtcpp.compute_energy(audio, win_len, hop_len)
 ```
 
