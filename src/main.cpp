@@ -71,15 +71,24 @@ py::array_t<float_t> compute_energy(const py::array_t<float_t> &audio,
   {
     meanOfSlice = computeSliceMean(audio, j, j + windowLength);
 
+ if (j + windowLength > srcAudio.shape(1)){
+           meanOfSlice = computeSliceMean(audio, j, srcAudio.shape(1));
+
+    }
+
+    std::cout << "j: " << j << std::endl;
     // destAudio should have size np.ceil((23420-8)/8) + 1
 
     destAudio(0, z) = meanOfSlice.channelOne;
     destAudio(1, z) = meanOfSlice.channelTwo;
-    // std::cout << "meanOfSlice.channelOne: " << meanOfSlice.channelOne << std::endl;
-    // std::cout << "meanOfSlice.channelTwo: " << meanOfSlice.channelTwo << std::endl;
 
-    // std::cout << "destAudio(0, "<< z << "): " << destAudio(0, z) << std::endl;
-    // std::cout << "destAudio(1, "<< z << "): "<< destAudio(1, z) << std::endl;
+   
+
+    std::cout << "meanOfSlice.channelOne: " << meanOfSlice.channelOne << std::endl;
+    std::cout << "meanOfSlice.channelTwo: " << meanOfSlice.channelTwo << std::endl;
+
+    std::cout << "destAudio(0, "<< z << "): " << destAudio(0, z) << std::endl;
+    std::cout << "destAudio(1, "<< z << "): "<< destAudio(1, z) << std::endl;
 
     z += 1;
   }
