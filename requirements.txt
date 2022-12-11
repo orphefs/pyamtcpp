@@ -1,0 +1,4 @@
+nptyping==2.4.1
+numpy==1.23.5
+typing_extensions==4.4.0
+./
