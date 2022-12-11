@@ -1,6 +1,6 @@
 import pyamtcpp as m
 import numpy as np
-from scratch import compute_energy, compute_energy_cpp
+from utils.scratch import compute_energy, compute_energy_cpp
 
 audio = np.array(
     [
