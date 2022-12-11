@@ -49,7 +49,7 @@ py::array_t<float_t> compute_energy(const py::array_t<float_t> &audio,
   ssize_t arrayLength = ceil(static_cast<float>(srcAudio.shape(1) - hopLength) /
                              static_cast<float>(hopLength)) +
                         1;
-  std::cout << arrayLength << std::endl;
+  // std::cout << arrayLength << std::endl;
 
   // init new array for destination
   py::array_t<float_t> result({srcAudio.shape(0), arrayLength});
@@ -75,11 +75,11 @@ py::array_t<float_t> compute_energy(const py::array_t<float_t> &audio,
 
     destAudio(0, z) = meanOfSlice.channelOne;
     destAudio(1, z) = meanOfSlice.channelTwo;
-    std::cout << "meanOfSlice.channelOne: " << meanOfSlice.channelOne << std::endl;
-    std::cout << "meanOfSlice.channelTwo: " << meanOfSlice.channelTwo << std::endl;
+    // std::cout << "meanOfSlice.channelOne: " << meanOfSlice.channelOne << std::endl;
+    // std::cout << "meanOfSlice.channelTwo: " << meanOfSlice.channelTwo << std::endl;
 
-    std::cout << "destAudio(0, "<< z << "): " << destAudio(0, z) << std::endl;
-    std::cout << "destAudio(1, "<< z << "): "<< destAudio(1, z) << std::endl;
+    // std::cout << "destAudio(0, "<< z << "): " << destAudio(0, z) << std::endl;
+    // std::cout << "destAudio(1, "<< z << "): "<< destAudio(1, z) << std::endl;
 
     z += 1;
   }
