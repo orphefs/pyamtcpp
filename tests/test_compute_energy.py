@@ -45,5 +45,5 @@ def test_compute_energy(audio: nptyping.NDArray[Shape["2, *"], Float32], win_len
     cpp = compute_energy_cpp(audio, win_len, hop_len)
     diff = np.mean(np.abs(p - cpp), axis=1)
     assert pyamtcpp.__version__ == '0.0.1'
-    assert np.mean(diff) < 1e-7
+    assert np.mean(diff) < 5e-7
 

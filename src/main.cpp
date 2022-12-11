@@ -4,6 +4,7 @@
 
 #include <functional>
 #include <iostream>
+#include<cmath>
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
@@ -26,8 +27,8 @@ meanOfSlice computeSliceMean(const py::array_t<float_t> &srcAudio,
 
   for (py::ssize_t i = start; i < stop; i++)
   {
-    channelOne = channelOne + data(0, i);
-    channelTwo = channelTwo + data(1, i);
+    channelOne = channelOne + pow(data(0, i), 2);
+    channelTwo = channelTwo + pow(data(1, i), 2);
   }
 
   channelOne = channelOne / (stop - start);

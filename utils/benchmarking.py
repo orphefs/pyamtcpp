@@ -23,7 +23,7 @@ def st_time(func):
 def compute_energy(audio: nptyping.NDArray, hop_len: int, win_len: int):
     audio_len = audio.shape[1]
     energy = np.array(
-        [np.mean(audio[:, i:i + win_len], axis=1) for i in range(0, audio_len, hop_len)]).T
+        [np.mean(audio[:, i:i + win_len] ** 2, axis=1) for i in range(0, audio_len, hop_len)]).T
     return energy
 
 
