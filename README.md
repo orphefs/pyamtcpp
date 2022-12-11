@@ -9,7 +9,7 @@ pyamtcpp
 [actions-pip-badge]:       https://github.com/orphefs/pyamtcpp/workflows/Pip/badge.svg
 
 A [pybind11](https://github.com/pybind/pybind11) module built with a
-CMake-based build system, based on [this](https://github.com/pybind/cmake_example) template. This module is used in [this](https://github.com/orphefs/oni-image-processing-runner) repo for pixel-wise imputation of a microscope image.
+CMake-based build system, based on [this](https://github.com/pybind/cmake_example) template.
 
 Installation
 ------------
@@ -75,15 +75,15 @@ You can import and use the module like so:
 
 ```python
 import pyoniiip
-imputed_image = pyamtcpp.impute_image(image, calibration_image)
+energy = pyamtcpp.compute_energy(audio, win_len, hop_len)
 ```
 
 where
 
 ```python
-image: numpy.typing.NDArray[np.uint16]
-calibration_image: numpy.typing.NDArray[np.float]
-imputed_image: numpy.typing.NDArray[np.uint16]
+energy: numpy.typing.NDArray[np.float32] of dimensions 2 x N
+win_len: int
+hop_len: int
 ```
 
 [`cibuildwheel`]:          https://cibuildwheel.readthedocs.io
