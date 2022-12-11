@@ -1,21 +1,13 @@
-import argparse
-import filecmp
-import json
-import os
-from argparse import Namespace
-from pathlib import Path
-from typing import Union, Dict
-
 import nptyping
 import numpy as np
 import pyamtcpp
 import pytest
-from nptyping import NDArray
+from nptyping import Shape, Float32
 
 from utils.benchmarking import compute_energy, compute_energy_cpp
 
 
-@pytest.mark.parametrize("audio, win_len, hope_len",
+@pytest.mark.parametrize("audio, win_len, hop_len",
                          [
 
                              (
@@ -48,7 +40,7 @@ from utils.benchmarking import compute_energy, compute_energy_cpp
 
 
                          ])
-def test_compute_energy(audio: nptyping.NDArray[np.float32], win_len: int, hop_len:int):
+def test_compute_energy(audio: nptyping.NDArray[Shape["2, *"], Float32], win_len: int, hop_len:int):
     p = compute_energy(audio, win_len, hop_len)
     cpp = compute_energy_cpp(audio, win_len, hop_len)
     diff = np.mean(np.abs(p - cpp), axis=1)
