@@ -108,20 +108,14 @@ PYBIND11_MODULE(pyamtcpp, m)
     )pbdoc";
 
   m.def("compute_energy", &compute_energy, R"pbdoc(
-        Pixel-wise mean imputation of an image
+        Computation of the energy in a two channel audio signal.
 
-        This function takes as input two numpy arrays: 
-         image[][]: uint16
-         calibrationImage[][]: float
+        This function takes as input a numpy array and two integers:
+         audio: np.ndarray[np.float32]
+         win_len: int
+         hop_len: int
 
-         of the same dimensions.
-         The algorithm traverses the calibrationImage on a 
-         pixel-by-pixel basis, looking for negative values. 
-         A value average of nearest-neighbour (valid) pixels relative
-         to the query pixel image[i,j] is then computed and imputed into
-         image[i,j]. calibrationImage[i,j] is then set to 0.0 to indicate
-         a corrected measurement. Array operations are not in-place 
-         for the purpose of being explicit. 
+
     )pbdoc");
 
 #ifdef VERSION_INFO
