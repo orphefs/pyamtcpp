@@ -56,7 +56,7 @@ py::array_t<float_t> compute_energy(const py::array_t<float_t> &audio,
   auto destAudio = result.mutable_unchecked<2>();
 
   // init destAudio with 0's
-  for (py::ssize_t i = 0; i < destAudio.shape(0); i++)
+  for (py::ssize_t i = 0; i < destAudio.shape(1); i++)
   {
     destAudio(0, i) = 0.0;
     destAudio(1, i) = 0.0;
@@ -75,15 +75,13 @@ py::array_t<float_t> compute_energy(const py::array_t<float_t> &audio,
 
     destAudio(0, z) = meanOfSlice.channelOne;
     destAudio(1, z) = meanOfSlice.channelTwo;
-    z += 1;
     std::cout << "meanOfSlice.channelOne: " << meanOfSlice.channelOne << std::endl;
     std::cout << "meanOfSlice.channelTwo: " << meanOfSlice.channelTwo << std::endl;
 
     std::cout << "destAudio(0, "<< z << "): " << destAudio(0, z) << std::endl;
     std::cout << "destAudio(1, "<< z << "): "<< destAudio(1, z) << std::endl;
 
-
-
+    z += 1;
   }
 
   return result;
