@@ -6,7 +6,8 @@ from nptyping import Shape, Float32
 
 from utils.benchmarking import compute_energy, compute_energy_cpp
 
-
+special_array = np.random.normal(0, 1, [2, 12000]).astype(np.float32)
+special_array[1,100] = np.nan
 @pytest.mark.parametrize("audio, win_len, hop_len",
                          [
 
@@ -30,11 +31,16 @@ from utils.benchmarking import compute_energy, compute_energy_cpp
                                      1000,
                                      500,
                              ),
+                             # (
+                             #         np.random.normal(0, 1, [1, 120000]).astype(np.float32),
+                             #         106,
+                             #         80,
+                             # ),
                              (
-                                     np.random.normal(0, 1, [2, 12000000]).astype(np.float32),
+                                     special_array,
                                      106,
                                      80,
-                             ),
+                             )
 
 
 
